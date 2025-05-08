@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: timesheet-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node api/submit-timesheet.js
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: SPREADSHEET_ID
+        value: your_google_sheet_id
+      - key: FIREBASE_STORAGE_BUCKET
+        value: your_firebase_bucket
+      - key: RESEND_API_KEY
+        value: your_resend_api_key
+      - key: FROM_EMAIL
+        value: from@example.com
+      - key: HR_EMAIL
+        value: hr@example.com
+    autoDeploy: true

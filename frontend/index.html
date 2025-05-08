@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Timesheet Form</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="page1">
+    <h1>WLC Time Sheet (2024–2025)</h1>
+
+    <label for="name">Name: <span class="red-asterisk">*</span></label>
+    <input type="text" id="name" name="name" placeholder="Your name" required oninput="validateForm()" />
+
+    <label for="email">Email: <span class="red-asterisk">*</span></label>
+    <input type="email" id="email" name="email" placeholder="Your email" required oninput="validateForm()" />
+
+    <button type="button" id="enter-teaching-hours" onclick="nextPage('teaching')" disabled>Enter Teaching Hours</button>
+    <button type="button" id="enter-admin-hours" onclick="nextPage('admin')" disabled>Enter Admin Hours</button>
+  </div>
+
+  <!-- TEACHING FORM -->
+  <div id="page2-teaching" class="form-section">
+    <form id="teaching-form">
+      <h2>Teaching Hours</h2>
+      <table id="teaching-table">
+        <thead>
+          <tr>
+            <th class="action-column">Entry</th>
+            <th>Date <span class="red-asterisk">*</span></th>
+            <th>Location <span class="red-asterisk">*</span></th>
+            <th>Hours Worked <span class="red-asterisk">*</span></th>
+            <th>Language <span class="red-asterisk">*</span></th>
+            <th>Bridge Toll</th>
+            <th>Reimbursement Amount</th>
+            <th>Mileage Reimbursement</th>
+            <th>Supervision</th>
+            <th>Substitution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="action-column">
+              <button type="button" onclick="removeRow(this)">Remove</button>
+            </td>
+            <td><input type="date" name="teaching-date" required /></td>
+            <td>
+              <select name="teaching-location" id="teaching-location" required>
+                <option value="">Choose a location</option>
+              </select>
+            </td>
+            <td><input type="number" name="teaching-hours" min="1" required /></td>
+            <td>
+              <select name="teaching-language" id="teaching-language" required>
+                <option value="">Choose a language</option>
+              </select>
+            </td>
+            <td><input type="checkbox" name="teaching-bridge-toll" /></td>
+            <td><input type="number" name="teaching-reimbursement-amount" step="0.01" /></td>
+            <td><input type="number" name="teaching-mileage-reimbursement" step="0.01" /></td>
+            <td><input type="checkbox" name="teaching-supervision" /></td>
+            <td><input type="checkbox" name="teaching-substitution" /></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button type="button" class="add-row-btn" onclick="addRow('teaching')">Add Row</button>
+
+      <label for="attachments-teaching">Upload Reimbursement Receipts:</label>
+      <input type="file" id="attachments-teaching" name="attachments" multiple />
+      <div id="file-list-teaching"></div>
+
+      <label for="notes">Notes for HR:</label>
+      <textarea id="notes" name="notes" placeholder="Your notes"></textarea>
+
+      <div class="checkbox-container">
+        <input type="checkbox" id="e-signature" name="e-signature" required />
+        <span>I certify that the above is true and correct <span class="red-asterisk">*</span></span>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="back-btn" onclick="previousPage()">Back</button>
+        <input type="submit" class="submit-btn" value="Submit Teaching Hours" />
+      </div>
+    </form>
+  </div>
+
+  <!-- ADMIN FORM -->
+  <div id="page2-admin" class="form-section">
+    <form id="admin-form">
+      <h2>Admin Hours</h2>
+      <table id="admin-table">
+        <thead>
+          <tr>
+            <th class="action-column">Entry</th>
+            <th>Date <span class="red-asterisk">*</span></th>
+            <th>Location <span class="red-asterisk">*</span></th>
+            <th>Hours Worked <span class="red-asterisk">*</span></th>
+            <th>Bridge Toll</th>
+            <th>Reimbursement Amount</th>
+            <th>Mileage Reimbursement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="action-column">
+              <button type="button" onclick="removeRow(this)">Remove</button>
+            </td>
+            <td><input type="date" name="admin-date" required /></td>
+            <td><input type="text" name="admin-location" required /></td>
+            <td>
+              <input type="number" name="admin-hours" min="0.25" step="0.25" required placeholder="e.g., 0.5" />
+            </td>
+            <td><input type="checkbox" name="admin-bridge-toll" /></td>
+            <td><input type="number" name="admin-reimbursement-amount" step="0.01" /></td>
+            <td><input type="number" name="admin-mileage-reimbursement" step="0.01" /></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button type="button" class="add-row-btn" onclick="addRow('admin')">Add Row</button>
+
+      <label for="attachments-admin">Upload Reimbursement Receipts:</label>
+      <input type="file" id="attachments-admin" name="attachments" multiple />
+      <div id="file-list-admin"></div>
+
+      <label for="notes">Notes for HR:</label>
+      <textarea id="notes" name="notes" placeholder="Your notes"></textarea>
+
+      <div class="checkbox-container">
+        <input type="checkbox" id="e-signature-admin" name="e-signature" required />
+        <span>I certify that the above is true and correct <span class="red-asterisk">*</span></span>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="back-btn" onclick="previousPage()">Back</button>
+        <input type="submit" class="submit-btn" value="Submit Admin Hours" />
+      </div>
+    </form>
+  </div>
+
+  <div id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
