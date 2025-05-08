@@ -71,7 +71,7 @@ function removeRow(btn) {
 window.removeRow = removeRow;
 
 function populateDropdowns(row, type) {
-  fetch('${BASE_URL}/api/locations')
+  fetch(`${BASE_URL}/api/locations`)
     .then(res => res.json())
     .then(locations => {
       const select = row.querySelector(`select[name="${type}-location"]`);
@@ -83,7 +83,7 @@ function populateDropdowns(row, type) {
       });
     });
 
-  fetch('${BASE_URL}/api/languages')
+  fetch(`${BASE_URL}/api/languages`)
     .then(res => res.json())
     .then(langs => {
       const select = row.querySelector(`select[name="${type}-language"]`);
@@ -99,7 +99,7 @@ function populateDropdowns(row, type) {
 }
 
 function loadLocations() {
-  fetch('${BASE_URL}/api/locations')
+  fetch(`${BASE_URL}/api/locations`)
     .then(res => res.json())
     .then(locations => {
       const select = document.getElementById('teaching-location');
@@ -113,7 +113,7 @@ function loadLocations() {
 }
 
 function loadLanguages() {
-  fetch('${BASE_URL}/api/languages')
+  fetch(`${BASE_URL}/api/languages`)
     .then(res => res.json())
     .then(langs => {
       const select = document.getElementById('teaching-language');
@@ -264,7 +264,7 @@ function encodeAndSend(data, files) {
 }
 
 function postData(data) {
-  fetch('${BASE_URL}/api/submit-timesheet', {
+  fetch(`${BASE_URL}/api/submit-timesheet`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
