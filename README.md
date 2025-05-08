@@ -2,6 +2,8 @@
 
 A full-stack timesheet application designed for nonprofits or educational organizations to track teaching and administrative hours, upload reimbursement receipts, and automate email confirmations. It features a **Node.js backend deployed on Render** and a **frontend hosted on Netlify**.
 
+**Live Demo:** [https://classy-wisp-01980a.netlify.app/](https://classy-wisp-01980a.netlify.app/)
+
 ## Features
 
 - Separate forms for **Teaching** and **Admin** submissions  
@@ -55,6 +57,8 @@ A full-stack timesheet application designed for nonprofits or educational organi
 
 ## Setup & Deployment
 
+**Note:** The following instructions are intended for local development. For production deployment (e.g., on Render and Netlify), environment variables and service account files should be securely added via each platform’s settings (not committed to the project directory).
+
 ### Environment Configuration
 
 Create a `.env` file in the root directory with the following keys:
@@ -75,8 +79,10 @@ HR_EMAIL=hr@example.com
    git clone https://github.com/your-org/timesheet-app.git
    cd timesheet-app
    ```
+2. For local development, place firebase-service-account.json and google-service-account.json in the root directory.
 
-2. Place `firebase-service-account.json` and `google-service-account.json` in the root directory.  
+⚠️ Do not upload these files to your Git repo. For deployment, add them as secret files or environment files in your hosting dashboard.
+
 3. Add your `.env` file to the root directory.  
 4. Install backend dependencies:
    ```bash
